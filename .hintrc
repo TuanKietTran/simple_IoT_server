@@ -9,6 +9,19 @@
         "label": "off"
       }
     ],
-    "disown-opener": "off"
+    "disown-opener": "off",
+    "axe/aria": [
+      "default",
+      {
+        "aria-allowed-attr": "off",
+        "aria-progressbar-name": "off"
+      }
+    ],
+    "axe/name-role-value": [
+      "default",
+      {
+        "link-name": "off"
+      }
+    ]
   }
 }

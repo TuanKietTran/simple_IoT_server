@@ -1,5 +1,6 @@
 # import eventlet
-import json
+import signal, time
+import json, datetime
 from flask import Flask, render_template, request, jsonify
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
@@ -8,23 +9,35 @@ from flask_cors import CORS, cross_origin
 
 from pymongo import MongoClient
 
-def get_database():
- 
-   # Provide the mongodb atlas url to connect python to mongodb using pymongo
-   CONNECTION_STRING = "mongodb+srv://user:pass@cluster.mongodb.net/myFirstDatabase"
- 
-   # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
-   client = MongoClient(CONNECTION_STRING)
- 
-   # Create the database for our example (we will use the same database throughout the tutorial
-   return client['user_shopping_list']
+from model import Payload
+
+
+
+# Provide the mongodb atlas url to connect python to mongodb using pymongo
+CONNECTION_STRING = "mongodb+srv://dev:dev@iotdata.qulha5v.mongodb.net/?retryWrites=true&w=majority"
+
+# Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
+client = MongoClient(CONNECTION_STRING)
+
+# Create the database for our example (we will use the same database throughout the tutorial
+
+def get_database(name: str):
+    return client[name]
+
+def close_connection():
+    client.close()
+
+def handler(signum, frame):
+    res = input("Ctrl-c was pressed. Do you really want to exit? y/n ")
+    if res == 'y':
+        close_connection()
+        exit(1)
 
 
 app = Flask(__name__, template_folder='./templates',
             static_folder='./templates/assets')
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
 
+CORS(app)
 # use the free broker from HIVEMQ
 app.config['MQTT_BROKER_URL'] = 'broker.hivemq.com'
 app.config['MQTT_BROKER_PORT'] = 1883  # default port for non-tls connection
@@ -36,7 +49,7 @@ app.config['MQTT_PASSWORD'] = ''
 app.config['MQTT_KEEPALIVE'] = 5
 # set TLS to disabled for testing purposes
 app.config['MQTT_TLS_ENABLED'] = False
-topic = 'mytopic'
+topic = 'sensors'
 # Parameters for SSL enabled
 # app.config['MQTT_BROKER_PORT'] = 8883
 # app.config['MQTT_TLS_ENABLED'] = True
@@ -50,12 +63,18 @@ bootstrap = Bootstrap(app)
 
 # db = client.flask_db
 
-
-@app.route('/')
-@cross_origin()
+@app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    db = get_database(topic)
+    sensors = db.list_collection_names()
+    data = [ (sensor,list(db[sensor].find({}, { "_id":0, "timestamp": 1, "temp": 1, "humi": 1}).sort([( '$natural', -1 )]).limit(10))) 
+        for sensor in sensors]
 
+    response = jsonify({
+        "sensors" : sensors,
+        "latest" : dict(data)
+    })
+    return response
 
 @app.route('/pages/dashboard')
 @app.route('/dashboard')
@@ -64,11 +83,6 @@ def dashboard():
     return render_template('pages/dashboard.html')
 
 
-@app.route('/pages/tables')
-@app.route('/tables')
-@cross_origin()
-def table():
-    return render_template('pages/tables.html')
 
 
 @mqtt.on_connect()
@@ -99,12 +113,25 @@ def handle_connect(client, userdata, flags, rc):
 
 @mqtt.on_message()
 def handle_mqtt_message(client, userdata, message):
+    pd = json.loads(message.payload.decode())
     data = dict(
         topic=message.topic,
         payload=message.payload.decode()
     )
-    print(
-        'Received message on topic: {topic} with payload: {payload}'.format(**data))
+    # print('Received message on topic: {topic} with payload: {payload}'.format(**data))
+    # print(pd["humi"])
+    db = get_database(topic)
+    
+    col = db[pd["device"]]
+
+    x = col.insert_one({ "timestamp": datetime.datetime.now(), "temp": pd["temp"], "humi": pd["humi"]})
+
+    sensors = db.list_collection_names()
+    data = [ (sensor,list(db[sensor].find({}, { "_id":0, "timestamp": 1, "temp": 1, "humi": 1}).sort([( '$natural', -1 )]).limit(10))) 
+        for sensor in sensors]
+    print(dict(data))
+
+    
 
 
 @mqtt.on_log()
@@ -120,4 +147,5 @@ def publish_message():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    app.run(host='127.0.0.1', port=4000, debug=True)
+    

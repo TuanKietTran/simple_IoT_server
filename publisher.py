@@ -1,5 +1,5 @@
 # python 3.6
-
+import json
 import random
 import time
 
@@ -8,7 +8,7 @@ from paho.mqtt import client as mqtt_client
 
 broker = 'broker.hivemq.com'
 port = 1883
-topic = "mytopic"
+topic = "sensors"
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 1000)}'
 # username = 'emqx'
@@ -35,13 +35,10 @@ def publish(client):
         data = {
             "device": client_id,
             "sent" : msg_count,
-            "temp": 306.15,
-            "pressure": 1013,
-            "humidity": 44,
-            "temp_min": 306, 
-            "temp_max": 306
+            "temp": random.randint(290, 320) / 10.0,
+            "humi": random.randint(60, 100)
         }
-        msg = f"messages: {data}"
+        msg = f"{json.dumps(data)}"
         result = client.publish(topic, msg)
         # result: [0, 1]
         status = result[0]
