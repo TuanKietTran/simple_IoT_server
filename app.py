@@ -1,6 +1,7 @@
 # import eventlet
 import signal, time
-import json, datetime
+import json
+from datetime import datetime,timezone
 from flask import Flask, render_template, request, jsonify
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
@@ -9,7 +10,6 @@ from flask_cors import CORS, cross_origin
 
 from pymongo import MongoClient
 
-from model import Payload
 
 
 
@@ -59,15 +59,23 @@ mqtt = Mqtt(app)
 socketio = SocketIO(app)
 bootstrap = Bootstrap(app)
 
-# client = MongoClient('localhost', 27017)
-
-# db = client.flask_db
+@app.after_request
+def add_header(r):
+    """
+    Add headers to both force latest IE rendering engine or Chrome Frame,
+    and also to cache the rendered page for 10 minutes.
+    """
+    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    r.headers["Pragma"] = "no-cache"
+    r.headers["Expires"] = "0"
+    r.headers['Cache-Control'] = 'public, max-age=0'
+    return r
 
 @app.route('/', methods=['GET'])
 def index():
     db = get_database(topic)
     sensors = db.list_collection_names()
-    data = [ (sensor,list(db[sensor].find({}, { "_id":0, "timestamp": 1, "temp": 1, "humi": 1}).sort([( '$natural', -1 )]).limit(10))) 
+    data = [ (sensor,list(db[sensor].find({}, { "_id":0, "timestamp": 1, "temp": 1, "humi": 1, "lux": 1}).sort([( '$natural', -1 )]).limit(1) )[0] ) 
         for sensor in sensors]
 
     response = jsonify({
@@ -78,11 +86,10 @@ def index():
 
 @app.route('/pages/dashboard')
 @app.route('/dashboard')
+
 @cross_origin()
 def dashboard():
     return render_template('pages/dashboard.html')
-
-
 
 
 @mqtt.on_connect()
@@ -124,10 +131,10 @@ def handle_mqtt_message(client, userdata, message):
     
     col = db[pd["device"]]
 
-    x = col.insert_one({ "timestamp": datetime.datetime.now(), "temp": pd["temp"], "humi": pd["humi"]})
+    x = col.insert_one({ "timestamp": datetime.now(timezone.utc), "temp": pd["temp"], "humi": pd["humi"], "lux": pd["lux"]})
 
     sensors = db.list_collection_names()
-    data = [ (sensor,list(db[sensor].find({}, { "_id":0, "timestamp": 1, "temp": 1, "humi": 1}).sort([( '$natural', -1 )]).limit(10))) 
+    data = [ (sensor,list(db[sensor].find({}, { "_id":0, "timestamp": 1, "temp": 1, "humi": 1, "lux": 1}).sort([( '$natural', -1 )]).limit(1))) 
         for sensor in sensors]
     print(dict(data))
 

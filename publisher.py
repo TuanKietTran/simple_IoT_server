@@ -34,9 +34,11 @@ def publish(client):
         time.sleep(1)
         data = {
             "device": client_id,
+            "latlon": [10.41115, 106.95474],
             "sent" : msg_count,
             "temp": random.randint(290, 320) / 10.0,
-            "humi": random.randint(60, 100)
+            "humi": random.randint(60, 100),
+            "lux": random.randint(800, 1500) / 10.0,
         }
         msg = f"{json.dumps(data)}"
         result = client.publish(topic, msg)

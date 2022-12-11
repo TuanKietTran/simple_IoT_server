@@ -20,7 +20,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache" />
     <link
       rel="apple-touch-icon"
       sizes="76x76"
@@ -83,18 +83,17 @@
                     <canvas
                       id="chart-bars"
                       class="chart-canvas"
-                      height="170"
+                      height="240"
                     ></canvas>
                   </div>
                 </div>
               </div>
-              <div class="card-body">
-                <h6 class="mb-0">Nhiệt độ</h6>
-                <p class="text-sm">Sensor 1</p>
-                <div class="d-flex">
-                  <i class="material-icons text-sm my-auto me-1">schedule</i>
-                  <p class="mb-0 text-sm">Cập nhật mỗi 1h</p>
+              <div class="card-body d-flex justify-content-between">
+                <div class="">
+                  <h6 class="mb-0">Nhiệt độ</h6>
+                  <p class="text-sm sensor-name">Sensor</p>
                 </div>
+                <p class="mb-0 text-sm">Cập nhật mỗi 1s</p>
               </div>
             </div>
           </div>
@@ -110,120 +109,43 @@
                     <canvas
                       id="chart-line"
                       class="chart-canvas"
-                      height="170"
+                      height="240"
                     ></canvas>
                   </div>
                 </div>
               </div>
-              <div class="card-body">
-                <h6 class="mb-0">Độ ẩm</h6>
-                <p class="text-sm">Sensor 1</p>
-                <div class="d-flex">
-                  <i class="material-icons text-sm my-auto me-1">schedule</i>
-                  <p class="mb-0 text-sm">Cập nhật mỗi 1h</p>
+              <div class="card-body d-flex justify-content-between">
+                <div class="">
+                  <h6 class="mb-0">Độ ẩm</h6>
+                  <p class="text-sm sensor-name">Sensor</p>
                 </div>
+                <p class="mb-0 text-sm">Cập nhật mỗi 1s</p>
               </div>
             </div>
           </div>
           <div class="col-xl-4 col-md-6 mt-3 mb-3 px-2">
-            <div class="card">
-              <div class="card-header pb-0">
-                <div class="row">
-                  <div class="col-lg-6 col-7">
-                    <h6>Sensor 1</h6>
+            <div class="card z-index-2">
+              <div
+                class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent"
+              >
+                <div
+                  class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1"
+                >
+                  <div class="chart">
+                    <canvas
+                      id="chart-line-tasks"
+                      class="chart-canvas"
+                      height="240"
+                    ></canvas>
                   </div>
                 </div>
               </div>
-              <div class="card-body px-0 pb-0">
-                <div class="table-responsive">
-                  <table class="table align-items-center mb-0">
-                    <thead></thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <div
-                              class="d-flex flex-column justify-content-center"
-                            >
-                              <h6 class="mb-0 text-sm">Vị trí</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-center text-center text-sm">
-                          <span class="text-xs font-weight-bold">
-                            $14,000
-                          </span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <div
-                              class="d-flex flex-column justify-content-center"
-                            >
-                              <h6 class="mb-0 text-sm">Trạng thái</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-center text-center text-sm">
-                          <span class="text-xs font-weight-bold">
-                            $14,000
-                          </span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <div
-                              class="d-flex flex-column justify-content-center"
-                            >
-                              <h6 class="mb-0 text-sm">
-                                Khoảng thời gian mỗi lần gửi
-                              </h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-center text-center text-sm">
-                          <span class="text-xs font-weight-bold">
-                            $14,000
-                          </span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <div
-                              class="d-flex flex-column justify-content-center"
-                            >
-                              <h6 class="mb-0 text-sm">Lần gửi gần nhất</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-center text-center text-sm">
-                          <span class="text-xs font-weight-bold">
-                            $14,000
-                          </span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <div
-                              class="d-flex flex-column justify-content-center"
-                            >
-                              <h6 class="mb-0 text-sm">Lần gửi gần nhất</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-center text-center text-sm">
-                          <span class="text-xs font-weight-bold">
-                            $14,000
-                          </span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <div class="card-body d-flex justify-content-between">
+                <div class="">
+                  <h6 class="mb-0">Cường độ ánh sáng</h6>
+                  <p class="text-sm sensor-name">Sensor</p>
                 </div>
+                <p class="mb-0 text-sm">Cập nhật mỗi 1s</p>
               </div>
             </div>
           </div>
@@ -236,7 +158,7 @@
                   <div class="col-lg-6 col-7">
                     <h6 id="sensor-title">Sensors</h6>
                   </div>
-                  <div class="col-lg-6 col-5 my-auto text-end">
+                  <!-- <div class="col-lg-6 col-5 my-auto text-end">
                     <div class="dropdown float-lg-end pe-4">
                       <a
                         class="cursor-pointer"
@@ -273,7 +195,7 @@
                         </li>
                       </ul>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="card-body px-0 pb-2 my-auto">
@@ -287,11 +209,6 @@
                           Tên
                         </th>
                         <th
-                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                        >
-                          Trạng thái
-                        </th>
-                        <th
                           class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                         >
                           Nhiệt độ
@@ -301,11 +218,14 @@
                         >
                           Độ ẩm
                         </th>
+                        <th
+                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Cường độ bức xạ
+                        </th>
                       </tr>
                     </thead>
-                    <tbody id="sensor-table">
-
-                    </tbody>
+                    <tbody id="sensor-table"></tbody>
                   </table>
                 </div>
               </div>
@@ -545,13 +465,16 @@
     <script>
       var ctx = document.getElementById("chart-bars").getContext("2d");
       var ctx2 = document.getElementById("chart-line").getContext("2d");
-      let xlabel = [];
-      
+      var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+      let xs = [];
+
+      var url = "http://localhost:4000/";
+
       function addRow(data) {
         return `
           <tr>
             <td>
-              <div class="d-flex px-2 py-1">
+              <div class="d-flex px-3 py-1">
                 <div
                   class="d-flex flex-column justify-content-center"
                 >
@@ -559,316 +482,141 @@
                 </div>
               </div>
             </td>
-            <td>
-              <div class="avatar-group mt-2">
-                <a
-                  href="javascript:;"
-                  class="avatar avatar-xs rounded-circle"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="bottom"
-                  title="Ryan Tompson"
-                >
-                  <img src="../assets/img/team-1.jpg" alt="team1" />
-                </a>
-              </div>
-            </td>
             <td class="align-middle text-center text-sm">
               <span class="text-xs font-weight-bold" id="sensor-temp">
                 ${data.temp}
               </span>
             </td>
-            <td class="align-middle">
-              <div class="progress-wrapper w-75 mx-auto">
-                <div class="progress-info">
-                  <div class="progress-percentage">
-                    <span class="text-xs font-weight-bold" id="sensor-humi"
-                      >${data.humi}</span
-                    >
-                  </div>
-                </div>
-              </div>
+            <td class="align-middle text-center text-sm">
+              <span class="text-xs font-weight-bold" id="sensor-temp">
+                ${data.humi}
+              </span>
+            </td>
+            <td class="align-middle text-center text-sm">
+              <span class="text-xs font-weight-bold" id="sensor-temp">
+                ${data.lux}
+              </span>
             </td>
           </tr>
         `;
       }
 
-      var temp_char = new Chart(ctx2, {
-        type: "line",
-        data: {
-          labels: xlabel,
-          datasets: [
-            {
-              label: "Mobile apps",
-              tension: 0,
-              borderWidth: 0,
-              pointRadius: 5,
-              pointBackgroundColor: "rgba(255, 255, 255, .8)",
-              pointBorderColor: "transparent",
-              borderColor: "rgba(255, 255, 255, .8)",
-              borderColor: "rgba(255, 255, 255, .8)",
-              borderWidth: 4,
-              backgroundColor: "transparent",
-              fill: true,
-              data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
-              maxBarThickness: 6,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false,
-            },
-          },
-          interaction: {
-            intersect: false,
-            mode: "index",
-          },
-          scales: {
-            y: {
-              grid: {
-                drawBorder: false,
-                display: true,
-                drawOnChartArea: true,
-                drawTicks: false,
-                borderDash: [5, 5],
-                color: "rgba(255, 255, 255, .2)",
+      function drawChart(ctxString, label, xInit = [], yInit = []) {
+        return new Chart(ctxString, {
+          type: "line",
+          data: {
+            labels: xInit,
+            datasets: [
+              {
+                label: label,
+                tension: 0,
+                borderWidth: 0,
+                pointRadius: 5,
+                pointBackgroundColor: "rgba(255, 255, 255, .8)",
+                pointBorderColor: "transparent",
+                borderColor: "rgba(255, 255, 255, .8)",
+                borderColor: "rgba(255, 255, 255, .8)",
+                borderWidth: 4,
+                backgroundColor: "transparent",
+                fill: true,
+                data: yInit,
+                maxBarThickness: 6,
               },
-              ticks: {
-                display: true,
-                color: "#f8f9fa",
-                padding: 10,
-                font: {
-                  size: 14,
-                  weight: 300,
-                  family: "Roboto",
-                  style: "normal",
-                  lineHeight: 2,
-                },
-              },
-            },
-            x: {
-              grid: {
-                drawBorder: false,
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
                 display: false,
-                drawOnChartArea: false,
-                drawTicks: false,
-                borderDash: [5, 5],
               },
-              ticks: {
-                display: true,
-                color: "#f8f9fa",
-                padding: 10,
-                font: {
-                  size: 14,
-                  weight: 300,
-                  family: "Roboto",
-                  style: "normal",
-                  lineHeight: 2,
+            },
+            interaction: {
+              intersect: false,
+              mode: "index",
+            },
+            scales: {
+              y: {
+                grid: {
+                  drawBorder: false,
+                  display: true,
+                  drawOnChartArea: true,
+                  drawTicks: false,
+                  borderDash: [5, 5],
+                  color: "rgba(255, 255, 255, .2)",
+                },
+                ticks: {
+                  suggestedMin: 0,
+                  suggestedMax: 500,
+                  beginAtZero: true,
+                  padding: 10,
+                  font: {
+                    size: 14,
+                    weight: 300,
+                    family: "Roboto",
+                    style: "normal",
+                    lineHeight: 2,
+                  },
+                  color: "#fff",
+                },
+              },
+              x: {
+                grid: {
+                  drawBorder: false,
+                  display: true,
+                  drawOnChartArea: true,
+                  drawTicks: false,
+                  borderDash: [5, 5],
+                  color: "rgba(255, 255, 255, .2)",
+                },
+                ticks: {
+                  display: true,
+                  color: "#f8f9fa",
+                  padding: 10,
+                  font: {
+                    size: 14,
+                    weight: 300,
+                    family: "Roboto",
+                    style: "normal",
+                    lineHeight: 2,
+                  },
                 },
               },
             },
           },
-        },
-      });
-
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: ["M", "T", "W", "T", "F", "S", "S"],
-          datasets: [
-            {
-              label: "Sales",
-              tension: 0.4,
-              borderWidth: 0,
-              borderRadius: 4,
-              borderSkipped: false,
-              backgroundColor: "rgba(255, 255, 255, .8)",
-              data: [50, 20, 10, 22, 50, 10, 40],
-              maxBarThickness: 6,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false,
-            },
-          },
-          interaction: {
-            intersect: false,
-            mode: "index",
-          },
-          scales: {
-            y: {
-              grid: {
-                drawBorder: false,
-                display: true,
-                drawOnChartArea: true,
-                drawTicks: false,
-                borderDash: [5, 5],
-                color: "rgba(255, 255, 255, .2)",
-              },
-              ticks: {
-                suggestedMin: 0,
-                suggestedMax: 500,
-                beginAtZero: true,
-                padding: 10,
-                font: {
-                  size: 14,
-                  weight: 300,
-                  family: "Roboto",
-                  style: "normal",
-                  lineHeight: 2,
-                },
-                color: "#fff",
-              },
-            },
-            x: {
-              grid: {
-                drawBorder: false,
-                display: true,
-                drawOnChartArea: true,
-                drawTicks: false,
-                borderDash: [5, 5],
-                color: "rgba(255, 255, 255, .2)",
-              },
-              ticks: {
-                display: true,
-                color: "#f8f9fa",
-                padding: 10,
-                font: {
-                  size: 14,
-                  weight: 300,
-                  family: "Roboto",
-                  style: "normal",
-                  lineHeight: 2,
-                },
-              },
-            },
-          },
-        },
-      });
-
-
-
-      // var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
-
-      // new Chart(ctx3, {
-      //   type: "line",
-      //   data: {
-      //     labels: [
-      //       "Apr",
-      //       "May",
-      //       "Jun",
-      //       "Jul",
-      //       "Aug",
-      //       "Sep",
-      //       "Oct",
-      //       "Nov",
-      //       "Dec",
-      //     ],
-      //     datasets: [
-      //       {
-      //         label: "Mobile apps",
-      //         tension: 0,
-      //         borderWidth: 0,
-      //         pointRadius: 5,
-      //         pointBackgroundColor: "rgba(255, 255, 255, .8)",
-      //         pointBorderColor: "transparent",
-      //         borderColor: "rgba(255, 255, 255, .8)",
-      //         borderWidth: 4,
-      //         backgroundColor: "transparent",
-      //         fill: true,
-      //         data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-      //         maxBarThickness: 6,
-      //       },
-      //     ],
-      //   },
-      //   options: {
-      //     responsive: true,
-      //     maintainAspectRatio: false,
-      //     plugins: {
-      //       legend: {
-      //         display: false,
-      //       },
-      //     },
-      //     interaction: {
-      //       intersect: false,
-      //       mode: "index",
-      //     },
-      //     scales: {
-      //       y: {
-      //         grid: {
-      //           drawBorder: false,
-      //           display: true,
-      //           drawOnChartArea: true,
-      //           drawTicks: false,
-      //           borderDash: [5, 5],
-      //           color: "rgba(255, 255, 255, .2)",
-      //         },
-      //         ticks: {
-      //           display: true,
-      //           padding: 10,
-      //           color: "#f8f9fa",
-      //           font: {
-      //             size: 14,
-      //             weight: 300,
-      //             family: "Roboto",
-      //             style: "normal",
-      //             lineHeight: 2,
-      //           },
-      //         },
-      //       },
-      //       x: {
-      //         grid: {
-      //           drawBorder: false,
-      //           display: false,
-      //           drawOnChartArea: false,
-      //           drawTicks: false,
-      //           borderDash: [5, 5],
-      //         },
-      //         ticks: {
-      //           display: true,
-      //           color: "#f8f9fa",
-      //           padding: 10,
-      //           font: {
-      //             size: 14,
-      //             weight: 300,
-      //             family: "Roboto",
-      //             style: "normal",
-      //             lineHeight: 2,
-      //           },
-      //         },
-      //       },
-      //     },
-      //   },
-      // });
-
-      var map = L.map("map").setView([10.41115, 106.95474], 13);
-
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }).addTo(map);
-    </script>
-    <script>
-      var win = navigator.platform.indexOf("Win") > -1;
-      if (win && document.querySelector("#sidenav-scrollbar")) {
-        var options = {
-          damping: "0.5",
-        };
-        Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+        });
       }
 
+      var temp_chart = drawChart(ctx, "Nhiệt độ");
+      var humi_chart = drawChart(ctx2, "Độ ẩm");
+      var lux_chart = drawChart(ctx3, "Cường độ bức xạ");
 
+      function addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+          dataset.data.push(data);
+        });
+        chart.update();
+      }
 
-      var url = "http://localhost:4000/";
+      function removeData(chart) {
+        chart.data.labels.shift();
+        chart.data.datasets.forEach((dataset) => {
+          dataset.data.shift();
+        });
+        chart.update();
+      }
+
+      function drawMap() {
+        var map = L.map("map").setView([10.41115, 106.95474], 13);
+
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution:
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }).addTo(map);
+      }
       async function fetchWithTimeout(resource, options = {}) {
         const { timeout = 2000 } = options;
 
@@ -881,34 +629,65 @@
         clearTimeout(id);
         return response;
       }
-      async function loadGames() {
+      async function fetcher(url) {
         try {
           const response = await fetchWithTimeout(url, {
-            timeout: 2000
+            timeout: 2000,
           });
-          const games = await response.json();
-          
-          return games;
+          const data = await response.json();
+
+          return data;
         } catch (error) {
           // Timeouts if the request takes
           // longer than 6 seconds
-          console.log(error.name === 'AbortError');
+          console.log(error.name === "AbortError");
         }
       }
-      setInterval( async() => {
-        let data = await loadGames();
-        console.log(data);
-        const html = data.sensors.map( el => addRow({'sensor': el, ...data.latest[el][0]}));
-        document.getElementById('sensor-table').innerHTML = html.reduce((accumulator, currentValue) => accumulator + currentValue,'');
-        document.getElementById('sensor-title').innerHTML = `Sensor Nodes - ${new Date().toLocaleString() }`;
 
-        data.latest[data.sensors[0]].forEach(el => {
-          if (xlabel.length > 9) xlabel.pop();
-          xlabel.unshift(el.timestamp)
-          
-        })
-        console.log(xlabel)
+      drawMap();
+
+      setInterval(async () => {
+        let data = await fetcher(url);
+        console.log(data);
+        const html = data.sensors.map((el) =>
+          addRow({ sensor: el, ...data.latest[el] })
+        );
+        document.getElementsByClassName("sensor-name").innerHTML = data.sensors[0];
+        document.getElementById("sensor-table").innerHTML = html.reduce(
+          (accumulator, currentValue) => accumulator + currentValue,
+          ""
+        );
+        document.getElementById(
+          "sensor-title"
+        ).innerHTML = `Sensor Nodes - ${new Date().toLocaleString()}`;
+
+        const sensor_view = data.sensors[0]
+        
+          const d = data.latest[sensor_view];
+          if (xs.length > 4) {
+            removeData(temp_chart);
+            removeData(humi_chart);
+            removeData(lux_chart);
+            xs.pop();
+          }
+
+          const time = new Date(d.timestamp).toLocaleTimeString();
+          console.log(time);
+          addData(temp_chart, time, d.temp);
+          addData(humi_chart, time, d.humi);
+          addData(lux_chart, time, d.lux);
+          xs.push(time);
+        
       }, 1000);
+    </script>
+    <script>
+      var win = navigator.platform.indexOf("Win") > -1;
+      if (win && document.querySelector("#sidenav-scrollbar")) {
+        var options = {
+          damping: "0.5",
+        };
+        Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+      }
     </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
