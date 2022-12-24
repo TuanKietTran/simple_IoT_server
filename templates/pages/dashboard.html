@@ -467,6 +467,8 @@
       var ctx2 = document.getElementById("chart-line").getContext("2d");
       var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
       let xs = [];
+      var choice = 0;
+
 
       var url = "http://localhost:4000/";
 
@@ -478,7 +480,7 @@
                 <div
                   class="d-flex flex-column justify-content-center"
                 >
-                  <h6 class="mb-0 text-sm" >${data.sensor}</h6>
+                  <h6 class="mb-0 text-sm" onClick=${Switch(data.id)}>${data.sensor}</h6>
                 </div>
               </div>
             </td>
@@ -608,6 +610,11 @@
         chart.update();
       }
 
+      function Switch(sensor) {
+        console.log(choice)
+        choice = sensor;
+      }
+
       function drawMap() {
         var map = L.map("map").setView([10.41115, 106.95474], 13);
 
@@ -646,13 +653,16 @@
 
       drawMap();
 
+
+
       setInterval(async () => {
         let data = await fetcher(url);
         console.log(data);
-        const html = data.sensors.map((el) =>
-          addRow({ sensor: el, ...data.latest[el] })
+        choice = 0;
+        const html = data.sensors.map((el, key) =>
+          addRow({ id: key, sensor: el, ...data.latest[el] })
         );
-        document.getElementsByClassName("sensor-name").innerHTML = data.sensors[0];
+        document.getElementsByClassName("sensor-name").innerHTML = data.sensors[choice];
         document.getElementById("sensor-table").innerHTML = html.reduce(
           (accumulator, currentValue) => accumulator + currentValue,
           ""
@@ -661,7 +671,7 @@
           "sensor-title"
         ).innerHTML = `Sensor Nodes - ${new Date().toLocaleString()}`;
 
-        const sensor_view = data.sensors[0]
+        const sensor_view = data.sensors[choice]
         
           const d = data.latest[sensor_view];
           if (xs.length > 4) {

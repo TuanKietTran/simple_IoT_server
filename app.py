@@ -75,7 +75,7 @@ def add_header(r):
 def index():
     db = get_database(topic)
     sensors = db.list_collection_names()
-    data = [ (sensor,list(db[sensor].find({}, { "_id":0, "timestamp": 1, "temp": 1, "humi": 1, "lux": 1}).sort([( '$natural', -1 )]).limit(1) )[0] ) 
+    data = [ (sensor,list(db[sensor].find({}, { "_id":0, "name": 1, "latlon": 1, "timestamp": 1, "temp": 1, "humi": 1, "lux": 1}).sort([( '$natural', -1 )]).limit(1) )[0] ) 
         for sensor in sensors]
 
     response = jsonify({
@@ -131,12 +131,7 @@ def handle_mqtt_message(client, userdata, message):
     
     col = db[pd["device"]]
 
-    x = col.insert_one({ "timestamp": datetime.now(timezone.utc), "temp": pd["temp"], "humi": pd["humi"], "lux": pd["lux"]})
-
-    sensors = db.list_collection_names()
-    data = [ (sensor,list(db[sensor].find({}, { "_id":0, "timestamp": 1, "temp": 1, "humi": 1, "lux": 1}).sort([( '$natural', -1 )]).limit(1))) 
-        for sensor in sensors]
-    print(dict(data))
+    x = col.insert_one({ "name": pd["device"], "latlon": pd["latlon"], "timestamp": datetime.now(timezone.utc), "temp": pd["temp"], "humi": pd["humi"], "lux": pd["lux"]})
 
     
 
