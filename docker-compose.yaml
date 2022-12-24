@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  iot_server:
+    build:
+      context: .
+      network: host
+    ports:
+      - "2313:4000"
